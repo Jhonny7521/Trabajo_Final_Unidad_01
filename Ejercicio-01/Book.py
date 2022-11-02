@@ -1,11 +1,11 @@
-class Book:
-
+class BookTest:
   def __init__(self, data):
-    self.id:int = None or data['id']
-    self.title: str = None or data['title'] 
-    self.genre: str = None or data['genre']
-    self.ISBN: str = None or data['ISBN']
-    self.editorial: str = None or data['editorial']
-    self.authors: str = None or data['authors']
+    self.title = data.get('title', None)
+    self.author = data.get('author', None)
+    self.genres = data.get('genres', None)
+    self.publisher = data.get('publisher', None)
+    self.isbn = data.get('isbn', None)
 
+  def __str__(self):
+    return f'El libro {self.title}, fue escrito por {self.author}.\nEs del genero {self.genres} y fue publicado por {self.publisher}'
 
