@@ -9,7 +9,7 @@ def create_book_list(file):
         reader = csv.DictReader(csvfile)
         for row in reader:
             book_list.append(BookTest(row))
-        print(book_list[3])
+        return book_list
         
         
 #funciona
@@ -20,29 +20,89 @@ def list_books(file):
             print(row['title'])
 
 
-#no funciona como deberia
-#def search_by(file):
-    #parameter = input('Metodo de busqueda ')
-    #data = input('Dato del libro ')
+#funciona
+def search_by(file):
+    parameter = input('Metodo de busqueda:\nPuedes usar las opciones: titulo, autor, editorial, genero, isbn.\nIngresa tu metodo de busqueda: ')
 
- #   book_list = create_book_list(file)
-  #  if book_list is not None:
-   #     for i in book_list:
-    #        print(i)
+    book_list = create_book_list(file)
+
+    #busqueda por titulo
+    if parameter == 'titulo':
+        data = input('Dato del libro ')
+        title_search = next(
+            (book for book in book_list if book.title == data),
+            None
+        )
+        print(title_search)
 
 
+    #busqueda por autor y numero de autores
+    elif parameter == 'autor':
+        auth_num = input('Cuantos autores tiene tu libro? ')
+        if auth_num == '1':
+            data = input('Dato del libro ')
+            author_search = next(
+                (book for book in book_list if book.author == data),
+                None
+            )
+            print(author_search) 
+        else: 
+            for book in book_list: 
+                result = book.author.count(',')
+                if auth_num == '2':
+                    if result == 1:
+                        print(f"El libro {book.title}, fue escrito por {book.author}")
+                    else: None
+                elif auth_num == '3':
+                    if result == 2:
+                        print(f"El libro {book.title}, fue escrito por {book.author}")
+                    else: None
+                elif auth_num == '4':
+                    if result == 3:
+                        print(f"El libro {book.title}, fue escrito por {book.author}")
+                    else: None
+                elif auth_num == '5':
+                    if result == 4:
+                        print(f"El libro {book.title}, fue escrito por {book.author}")
+                    else: None
+                else: 
+                    print('No encontramos libros con esos parametros de busqueda. Intente de nuevo\n----------------------')
+                    search_by(file)
 
-    """
-    parameter = input('Que te gustaria buscar ')
-    data = input('Dato del libro ')
-    with open(file, 'r') as csvfile:
-        reader = csv.DictReader(csvfile)
-        for row in reader:
-            if row == parameter:
-                print(data)
-    """
+    #busqueda por editorial
+    elif parameter == 'editorial':
+        data = input('Dato del libro ')
+        publisher_search = next(
+            (book for book in book_list if book.publisher == data),
+            None
+        )
+        print(publisher_search) 
+
+    #busqueda por genero
+    elif parameter == 'genero':
+        data = input('Dato del libro ')
+        for book in book_list:
+            if data in book.genres:
+                print(book.title)
+
+    #busqueda por isbn
+    elif parameter == 'isbn':
+        data = input('Dato del libro ')
+        isbn_search = next(
+            (book for book in book_list if book.isbn == data),
+            None
+        )
+        print(isbn_search)    
+
+    #mensaje de error, reinicia el loop
+    else: 
+        print('Una de las opciones es incorrecta\nPor favor coloque una de las opciones\n----------------------')
+        search_by(file)
+
+
 
 #testing
-x = create_book_list('Trabajo_Final_Unidad_01/libros.csv')
+#x = create_book_list('Trabajo_Final_Unidad_01/libros.csv')
 #y = list_books('Trabajo_Final_Unidad_01/libros.csv')
-#z = search_by('Trabajo_Final_Unidad_01/libros.csv')
+z = search_by('Trabajo_Final_Unidad_01/libros.csv')
+#a = author_number('Trabajo_Final_Unidad_01/libros.csv')
