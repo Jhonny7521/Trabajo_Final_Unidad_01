@@ -38,8 +38,8 @@ def search_by(file):
 
     #busqueda por autor y numero de autores
     elif parameter == 'autor':
-        auth_num = input('Cuantos autores tiene tu libro? ')
-        if auth_num == '1':
+        author_num = input('Cuantos autores tiene tu libro? ')
+        if author_num == '1':
             data = input('Dato del libro ')
             author_search = next(
                 (book for book in book_list if book.author == data),
@@ -47,27 +47,15 @@ def search_by(file):
             )
             print(author_search) 
         else: 
+            author_int = int(author_num) - 1
             for book in book_list: 
-                result = book.author.count(',')
-                if auth_num == '2':
-                    if result == 1:
-                        print(f"El libro {book.title}, fue escrito por {book.author}")
-                    else: None
-                elif auth_num == '3':
-                    if result == 2:
-                        print(f"El libro {book.title}, fue escrito por {book.author}")
-                    else: None
-                elif auth_num == '4':
-                    if result == 3:
-                        print(f"El libro {book.title}, fue escrito por {book.author}")
-                    else: None
-                elif auth_num == '5':
-                    if result == 4:
-                        print(f"El libro {book.title}, fue escrito por {book.author}")
-                    else: None
-                else: 
-                    print('No encontramos libros con esos parametros de busqueda. Intente de nuevo\n----------------------')
-                    search_by(file)
+                results = book.author.count(',')
+                if author_int == results: 
+                    print(f"El libro {book.title}, fue escrito por {book.author}")
+        
+       #     else: 
+        #        print('No encontramos libros con esos parametros de busqueda. Intente de nuevo\n----------------------')
+         #       search_by(file)
 
     #busqueda por editorial
     elif parameter == 'editorial':
