@@ -31,10 +31,12 @@ def init():
 # Función que retorna un objeto libro en forma de diccionario luego de obtener los datos
 def get_data_book():
 
-  title = input("Ingrese el título del libro: ")
-  genre = input("Ingrese el género del libro: ")
-  isbn = input("Ingrese el ISBN del libro: ")
-  editorial = input("Ingrese el editorial del libro: ")
+  new_book = Book()
+
+  new_book.title = input("Ingrese el título del libro: ")
+  new_book.genre = input("Ingrese el género del libro: ")
+  new_book.isbn = input("Ingrese el ISBN del libro: ")
+  new_book.editorial = input("Ingrese el editorial del libro: ")
   autors = []
 
   while True:
@@ -47,15 +49,15 @@ def get_data_book():
     if not answer:
       break
   
-  data_book = {
-    'title': title,
-    'genre': genre,
-    'isbn': isbn,
-    'editorial': editorial,
-    'autors': autors
-  }
-  
-  new_book = Book(data_book)
+  # data_book = {
+  #   'title': title,
+  #   'genre': genre,
+  #   'isbn': isbn,
+  #   'editorial': editorial,
+  #   'autors': autors
+  # }
+  new_book.authors = autors
+  # new_book = Book(data_book)
 
   book_data = new_book.book_to_dictionary()
 
