@@ -1,11 +1,16 @@
 class Book:
 
-  def __init__(self, data):
-    self.id:int = None or data['id']
-    self.title: str = None or data['title'] 
-    self.genre: str = None or data['genre']
-    self.ISBN: str = None or data['ISBN']
-    self.editorial: str = None or data['editorial']
-    self.authors: str = None or data['authors']
+  def __init__(self, data = {}):
+
+    self.title: str = data.get('title', None)
+    self.genre: str = data.get('genre', None)
+    self.isbn: str = data.get('isbn', None)
+    self.editorial: str = data.get('editorial', None)
+    self.authors: list = data.get('authors', None)
+
+  def book_to_dictionary(self):
+    return vars(self)
+
+
 
 
