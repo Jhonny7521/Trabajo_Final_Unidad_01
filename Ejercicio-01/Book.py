@@ -11,6 +11,9 @@ class Book:
   def book_to_dictionary(self):
     return vars(self)
 
+  def __str__(self):
+    return f'El libro {self.title}, fue escrito por {self.authors}.\nEs del genero {self.genre} y fue publicado por {self.editorial}'
+
 
 
 
