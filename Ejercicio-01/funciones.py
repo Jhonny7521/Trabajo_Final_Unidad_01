@@ -191,9 +191,60 @@ def search_by(file) -> str:
         print('Una de las opciones es incorrecta\nPor favor coloque una de las opciones\n----------------------')
         search_by(file)
 
+# Funcion de actulizacion o modificacion de datos de un libro
+def update_book(file):
+    file_update = open(file,'r')
+    Reader = csv.reader(file_update)
+    L = []
+    uId = input('Ingresa el nombre del Libro que deseas actualizar o modificar: ').lower()
+    found = False
+    for row in Reader:
+        if row[0].lower() == uId:
+            found = True
+            print(row[0],' - ',row[1],' - ',row[2],' - ',row[3])
+            title_new = input('Ingresa un nuevo Titulo: ')
+            genre_new = input('Ingresa un nuevo Genero: ')
+            isbn_new = input('Ingresa un nuevo ISBN: ')
+            publisher_new = input('Ingresa una nueva Editorial: ')
+            row[0] = title_new
+            row[1] = genre_new
+            row[2] = isbn_new
+            row[3] = publisher_new
+        L.append(row)
+    file_update.close()
+
+    if found == False:
+        print('Libro no encontrado.')
+    else:
+        file_update = open(file,'w+',newline='')
+        Writer = csv.writer(file_update)
+        Writer.writerows(L)
+        file_update.seek(0)
+        Reader = csv.reader(file_update)
+        for row in Reader:
+            print(row)
+        file_update.close()
+
+# Funcion de eliminacion de libros segun su nombre
+def delete_books(file):
+    lines = list()
+    book_name = input('Ingresa el nombre del Libro a ser eliminado: ').lower()
+    with open(file,'r') as File:
+        reader = csv.reader(File)
+        for row in reader:
+            lines.append(row)
+            for field in row:
+                if field.lower() == book_name:
+                    lines.remove(row)
+    
+    with open(file,'w+',newline='') as writeFile:
+        writer = csv.writer(writeFile)
+        writer.writerows(lines)
 
 #testing
 #x = create_book_list('/Users/jjnieto/Desktop/trabajo_final/Trabajo-final-01/Trabajo_Final_Unidad_01/Ejercicio-01/books.csv')
 #y = list_books('/Users/jjnieto/Desktop/trabajo_final/Trabajo-final-01/Trabajo_Final_Unidad_01/Ejercicio-01/books.csv')
 #z = search_by('/Users/jjnieto/Desktop/trabajo_final/Trabajo-final-01/Trabajo_Final_Unidad_01/Ejercicio-01/books.csv')
 #a = author_number('Trabajo_Final_Unidad_01/Ejercicio-01/libros.csv')
+#u = update_book('books.csv')
+#d = delete_books('books.csv')

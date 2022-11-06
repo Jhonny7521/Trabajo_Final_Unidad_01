@@ -1,7 +1,7 @@
-if __name__ == "__main__":
+from funciones import *
+from Book import *
 
-    from funciones import *
-    from Book import *
+if __name__ == "__main__":
 
     init()
 
@@ -18,11 +18,11 @@ if __name__ == "__main__":
         case 2:
             pass
         case 3:
-            pass
+            delete_books(file1)
         case 4:
             search_by(file1)
         case 5:
-            pass
+            update_book(file1)
         case 6:
             pass
         case default:
