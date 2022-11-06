@@ -8,7 +8,7 @@ def create_book_list(file):
     with open(file, 'r') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            book_list.append(BookTest(row))
+            book_list.append(Book(row))
         return book_list
         
         
@@ -42,7 +42,7 @@ def search_by(file):
         if author_num == '1':
             data = input('Dato del libro ')
             author_search = next(
-                (book for book in book_list if book.author == data),
+                (book for book in book_list if book.authors == data),
                 None
             )
             print(author_search) 
@@ -51,13 +51,13 @@ def search_by(file):
             for book in book_list: 
                 results = book.author.count(',')
                 if author_int == results: 
-                    print(f"El libro {book.title}, fue escrito por {book.author}")
+                    print(f"El libro {book.title}, fue escrito por {book.authors}")
 
     #busqueda por editorial
     elif parameter == 'editorial':
         data = input('Dato del libro ')
         publisher_search = next(
-            (book for book in book_list if book.publisher == data),
+            (book for book in book_list if book.editorial == data),
             None
         )
         print(publisher_search) 
@@ -85,7 +85,7 @@ def search_by(file):
 
 
 #testing
-x = create_book_list('Trabajo_Final_Unidad_01/Ejercicio-01/libros.csv')
+#x = create_book_list('Trabajo_Final_Unidad_01/Ejercicio-01/libros.csv')
 #y = list_books('Trabajo_Final_Unidad_01/Ejercicio-01/libros.csv')
-#z = search_by('Trabajo_Final_Unidad_01/Ejercicio-01/libros.csv')
+z = search_by('Trabajo_Final_Unidad_01/Ejercicio-01/libros.csv')
 #a = author_number('Trabajo_Final_Unidad_01/Ejercicio-01/libros.csv')
