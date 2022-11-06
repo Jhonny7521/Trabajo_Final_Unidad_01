@@ -1,10 +1,11 @@
 import csv
 import os
+import shutil
 
 from Book import Book
 
 # Función inicial
-def init() -> None:
+def add_book(file_name) -> None:
 
   start_excersice = True
 
@@ -15,7 +16,7 @@ def init() -> None:
     if answer :
       book_data = get_data_book()
 
-      file_name = 'books.csv'
+      # file_name = 'books.csv'
       content = os.path.isfile(file_name)
 
       if not content:
@@ -240,6 +241,32 @@ def delete_books(file):
     with open(file,'w+',newline='') as writeFile:
         writer = csv.writer(writeFile)
         writer.writerows(lines)
+
+# Funcion para guardar el archivo generado en otra direccion que ingrese el usuario
+def save_file_to_another_path(file_name:str) -> None:
+
+  status = True
+
+  while status:
+    new_path = input('Ingrese la direccion donde desea guardar su archivo: \n')
+
+    print('El nombre del archivo por defecto es "book.csv".\n¿Desea guardar el archivo con otro nombre?\n')
+
+    answer = check_answer()
+
+    try:
+      if answer:
+        new_file_name = input('Ingrese el nuevo nombre para el archivo: ')
+        shutil.copy(file_name, f'{new_path}/{new_file_name}.csv')
+      else:
+        shutil.copy(file_name, f'{new_path}/{file_name}')
+      
+      status = False
+      print('Archivo guardado correctamente')
+
+    except:
+      print('Ha ocurrido un error con la ruta ingresada. Por favor ingrese una ruta valida.')
+
 
 #testing
 #x = create_book_list('/Users/jjnieto/Desktop/trabajo_final/Trabajo-final-01/Trabajo_Final_Unidad_01/Ejercicio-01/books.csv')
