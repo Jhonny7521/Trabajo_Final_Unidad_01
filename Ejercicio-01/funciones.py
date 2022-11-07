@@ -1,6 +1,7 @@
 import csv
 import os
 import shutil
+import operator
 
 from Book import Book
 
@@ -109,6 +110,39 @@ def check_answer() -> bool:
       print('Ingrese una respuesta valida\n')
     
   return is_correct
+
+# Listar los tres primeros libros del archivo csv
+def list_first_books(file_name: str)->None:
+
+  list_books = []
+  with open(file_name, 'r') as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+        list_books.append(row)
+
+  for count in range(1,4):
+    row = list_books[count]
+    data = f'{str(count)}. '
+    for value in row:
+      data += f'{value}: {row[value]}, '
+    count += 1
+    print(data)
+
+
+# Ordenar por Título de libro
+def sort_by_title(file_name: str)->None:
+
+  with open(file_name) as csvfile:
+    reader = csv.DictReader(csvfile)
+    rows = sorted(reader, reverse=False, key=operator.itemgetter('title'))
+
+    count = 1
+    for row in rows:
+      data = f'{str(count)}. '
+      for value in row:
+        data += f'{value}: {row[value]}, '
+      count += 1
+      print(data)
 
 #crear lista de libros
 def create_book_list(file) -> list: 
