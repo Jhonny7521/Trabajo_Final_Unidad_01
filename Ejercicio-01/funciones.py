@@ -202,15 +202,17 @@ def update_book(file):
     for row in Reader:
         if row[0].lower() == uId:
             found = True
-            print(row[0],' - ',row[1],' - ',row[2],' - ',row[3])
-            title_new = input('Ingresa un nuevo Titulo: ')
-            genre_new = input('Ingresa un nuevo Genero: ')
-            isbn_new = input('Ingresa un nuevo ISBN: ')
-            publisher_new = input('Ingresa una nueva Editorial: ')
+            print(row[0],' - ',row[1],' - ',row[2],' - ',row[3],' - ',row[4])
+            title_new = input('Ingrese un nuevo Titulo: ')
+            genre_new = input('Ingrese un nuevo Genero: ')
+            isbn_new = input('Ingrese un nuevo ISBN: ')
+            publisher_new = input('Ingrese una nueva Editorial: ')
+            author_new = input('Ingrese un nuevo Autor(es), separado por coma: ')
             row[0] = title_new
             row[1] = genre_new
             row[2] = isbn_new
             row[3] = publisher_new
+            row[4] = author_new
         L.append(row)
     file_update.close()
 
