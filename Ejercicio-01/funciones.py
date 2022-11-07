@@ -251,9 +251,7 @@ def save_file_to_another_path(file_name:str) -> None:
 
   while status:
     new_path = input('Ingrese la direccion donde desea guardar su archivo: \n')
-
     print('El nombre del archivo por defecto es "book.csv".\n¿Desea guardar el archivo con otro nombre?\n')
-
     answer = check_answer()
 
     try:
