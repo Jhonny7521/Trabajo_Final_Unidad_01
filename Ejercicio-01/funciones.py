@@ -268,12 +268,3 @@ def save_file_to_another_path(file_name:str) -> None:
 
     except:
       print('Ha ocurrido un error con la ruta ingresada. Por favor ingrese una ruta valida.')
-
-
-#testing
-#x = create_book_list('/Users/jjnieto/Desktop/trabajo_final/Trabajo-final-01/Trabajo_Final_Unidad_01/Ejercicio-01/books.csv')
-#y = list_books('/Users/jjnieto/Desktop/trabajo_final/Trabajo-final-01/Trabajo_Final_Unidad_01/Ejercicio-01/books.csv')
-#z = search_by('/Users/jjnieto/Desktop/trabajo_final/Trabajo-final-01/Trabajo_Final_Unidad_01/Ejercicio-01/books.csv')
-#a = author_number('Trabajo_Final_Unidad_01/Ejercicio-01/libros.csv')
-#u = update_book('books.csv')
-#d = delete_books('books.csv')
