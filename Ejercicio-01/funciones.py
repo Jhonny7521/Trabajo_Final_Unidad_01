@@ -202,15 +202,17 @@ def update_book(file):
     for row in Reader:
         if row[0].lower() == uId:
             found = True
-            print(row[0],' - ',row[1],' - ',row[2],' - ',row[3])
-            title_new = input('Ingresa un nuevo Titulo: ')
-            genre_new = input('Ingresa un nuevo Genero: ')
-            isbn_new = input('Ingresa un nuevo ISBN: ')
-            publisher_new = input('Ingresa una nueva Editorial: ')
+            print(row[0],' - ',row[1],' - ',row[2],' - ',row[3],' - ',row[4])
+            title_new = input('Ingrese un nuevo Titulo: ')
+            genre_new = input('Ingrese un nuevo Genero: ')
+            isbn_new = input('Ingrese un nuevo ISBN: ')
+            publisher_new = input('Ingrese una nueva Editorial: ')
+            author_new = input('Ingrese un nuevo Autor(es), separado por coma: ')
             row[0] = title_new
             row[1] = genre_new
             row[2] = isbn_new
             row[3] = publisher_new
+            row[4] = author_new
         L.append(row)
     file_update.close()
 
@@ -249,9 +251,7 @@ def save_file_to_another_path(file_name:str) -> None:
 
   while status:
     new_path = input('Ingrese la direccion donde desea guardar su archivo: \n')
-
     print('El nombre del archivo por defecto es "book.csv".\n¿Desea guardar el archivo con otro nombre?\n')
-
     answer = check_answer()
 
     try:
@@ -266,12 +266,3 @@ def save_file_to_another_path(file_name:str) -> None:
 
     except:
       print('Ha ocurrido un error con la ruta ingresada. Por favor ingrese una ruta valida.')
-
-
-#testing
-#x = create_book_list('/Users/jjnieto/Desktop/trabajo_final/Trabajo-final-01/Trabajo_Final_Unidad_01/Ejercicio-01/books.csv')
-#y = list_books('/Users/jjnieto/Desktop/trabajo_final/Trabajo-final-01/Trabajo_Final_Unidad_01/Ejercicio-01/books.csv')
-#z = search_by('/Users/jjnieto/Desktop/trabajo_final/Trabajo-final-01/Trabajo_Final_Unidad_01/Ejercicio-01/books.csv')
-#a = author_number('Trabajo_Final_Unidad_01/Ejercicio-01/libros.csv')
-#u = update_book('books.csv')
-#d = delete_books('books.csv')
